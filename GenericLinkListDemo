@@ -1,0 +1,41 @@
+package javaapplication15;
+
+/**
+ *
+ * @author usuario
+ */
+public class GenericLinkListDemo 
+{
+    public static void main(String[] args)
+    {
+        LinkedList3<Entry> list = new LinkedList3<Entry>( );
+        Entry entry1 = new Entry("Apples", 1);
+        list.addToStart(entry1);
+        Entry entry2 = new Entry("Bananas", 2);
+        list.addToStart(entry2);
+        Entry entry3 = new Entry("Cantaloupe", 3);
+        list.addToStart(entry3);
+        System.out.println(list.equals("object"));
+        System.out.println("List has " + list.size( )
+        + " nodes.");
+        list.outputList( );
+        System.out.println("here");
+        LinkedList3<Entry>copy=list.clone();
+        System.out.println("copy= "+copy);
+        System.out.println(entry2);
+        
+        System.out.println("End of list.");
+        System.out.println("list class "+list.getClass());
+        LinkedList3<Entry> list2=new LinkedList3<Entry>();
+        Entry entryA=new Entry("Apples",1);
+        list2.addToStart(entryA);
+        Entry entryB=new Entry("Bananas",2);
+        list2.addToStart(entryB);
+        Entry entryC=new Entry("Cantaloupe",3);
+        list2.addToStart(entryC);
+        list.outputList();
+        System.out.println("list2 class "+list2.getClass());
+        System.out.println(list.equals(list2));
+        //list.LinkedList3(list2);
+    }
+}
