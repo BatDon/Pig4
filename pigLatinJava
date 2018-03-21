@@ -1,0 +1,184 @@
+package firstPackage;
+
+/**
+ *
+ * @author usuario
+ */
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.GridLayout;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Color;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Arrays;
+import java.util.List;
+
+public class PigLatinFrame extends JFrame implements ActionListener
+{
+    public static final int WIDTH = 400;
+    public static final int HEIGHT = 200;
+    
+    public static final int NUMBER_OF_CHAR = 30;
+    private JTextField pigName;
+    private JTextField pigTranslated;
+    
+    public static void main(String[] args)
+    {
+        PigLatinFrame gui = new PigLatinFrame();
+        gui.setVisible( true);
+    }
+    public PigLatinFrame()
+    {
+        super("Pig Latin Frame");
+        setSize(WIDTH, HEIGHT);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new GridLayout(2, 1));
+        
+        //panel with two text boxes to translate
+        JPanel pigTextPanel=new JPanel();
+        pigTextPanel.setLayout(new GridLayout(4,1));
+        pigTextPanel.setBackground(Color.BLUE);
+        
+        JLabel directionsLabel = new JLabel("Enter the word you want translated here");
+        pigTextPanel.add(directionsLabel);
+        //field enter word
+        pigName = new JTextField(NUMBER_OF_CHAR);
+        pigTextPanel.add(pigName);
+        
+        JLabel translatedLabel= new JLabel("Word translated");
+        pigTextPanel.add(translatedLabel);
+        
+        pigTranslated=new JTextField(NUMBER_OF_CHAR);
+        pigTextPanel.add(pigTranslated);
+        
+        //added pigTextPanel to window 
+        add(pigTextPanel);
+        
+        
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.setLayout(new FlowLayout());
+        buttonPanel.setBackground(Color.PINK);
+        
+        JButton clickButton = new JButton("Click me");
+        clickButton.addActionListener(this);
+        buttonPanel.add(clickButton);
+        
+        JButton clearButton = new JButton("Clear");
+        clearButton.addActionListener(this);
+        buttonPanel.add(clearButton);
+        add(buttonPanel);
+    }
+    public void actionPerformed(ActionEvent e)
+    {
+        String actionCommand = e.getActionCommand();
+        String wordReturned=null;
+        if (actionCommand.equals("Click me"))
+        {
+            wordReturned=getWord();
+            pigTranslated.setText(wordReturned);
+        }    
+        else if (actionCommand.equals("Clear"))
+            pigName.setText("");
+        else
+            pigTranslated.setText("Unexpected error.");
+    }
+        
+        
+        //returns 
+    private String getWord()
+    {
+        Character pigCharacter=null;
+        String pigString = pigName.getText();
+        String firstLetter=null;
+        String firstTwoLetters=null;
+        String endOfWord=null;
+        String changedPigString=null;
+        //ArrayList<String> wordArray = new ArrayList<String>();
+        String newWord=null;
+        int count = 0;
+        //
+        //List<String> myList = new ArrayList<String>(Arrays.asList(pigString.split("\\.")));
+    
+
+        //for (int i = 0; i < pigString.length(); i++)
+           
+            
+            //wordArray[i]=pigString[i];
+            int i=0;
+            pigCharacter=Character.toLowerCase(pigString.charAt(i));
+            System.out.println(pigCharacter);
+            //if letter doesn't equal a vowel
+            if (!pigCharacter.equals('a')&&
+                !pigCharacter.equals('e')&&
+                !pigCharacter.equals('i')&&
+                !pigCharacter.equals('o')&&
+                !pigCharacter.equals('u'))
+            {    
+                System.out.println("first");
+                pigCharacter=Character.toLowerCase(pigString.charAt(i+1));
+            }    
+            else
+                return pigString+"way";
+            if (!pigCharacter.equals('a')&&
+                !pigCharacter.equals('e')&&
+                !pigCharacter.equals('i')&&
+                !pigCharacter.equals('o')&&
+                !pigCharacter.equals('u'))
+                {    
+                    System.out.println(pigCharacter);
+                    System.out.println("second");
+                    pigCharacter=Character.toLowerCase(pigString.charAt(i+2));
+                }    
+            //word with one consonant then a vowel
+            //ex: cat needs to be atcay
+            else
+            {
+                firstLetter=pigString.substring(0,1);
+                endOfWord=pigString.substring(1);
+                changedPigString=endOfWord+firstLetter+"ay";
+                return changedPigString;
+            }
+            if (!pigCharacter.equals('a')&&
+                !pigCharacter.equals('e')&&
+                !pigCharacter.equals('i')&&
+                !pigCharacter.equals('o')&&
+                !pigCharacter.equals('u'))
+            {    
+                System.out.println("third");
+            }    
+            else
+            {
+                firstTwoLetters=pigString.substring(0,2);
+                endOfWord=pigString.substring(2);
+                changedPigString=endOfWord+firstTwoLetters+"ay";
+                return changedPigString;
+            }    
+                
+                    //System.out.println("vowel");
+             /*   }    
+                if (i>2)
+                    return ("characthers");
+                else            
+                    continue;
+                //System.out.println("ok");
+            }    
+            else
+                if (i<1)
+                    return wordString+"way";
+                else
+                    return ("consonants at beg");*/
+            return newWord;         
+    }        
+                
+        //count++;
+            //return count + 1; //The last line has no '\n'.
+    
+    
+}
