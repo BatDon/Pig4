@@ -1,0 +1,51 @@
+package javaapplication11;
+import java.util.Scanner;
+
+/**
+ *
+ * @author usuario
+ */
+public class CalculateAverage 
+{
+    
+    
+   public static void main(String[] args) 
+   {
+       Scanner keyboard=new Scanner(System.in);
+       try
+       {
+       System.out.println("Enter an array size");
+       int n=keyboard.nextInt();
+           if(n<0)
+               throw new NegativeNumberException(n);
+       int [] arrayOfNumbers=new int[n];
+       System.out.println("Input "+n+" integers greater than 0");
+       for(int i=0;i<n;i++)
+       {
+           int inputNumber=keyboard.nextInt();
+           if(inputNumber<0)
+               throw new NegativeNumberException(n);
+           arrayOfNumbers[i]=inputNumber;
+           System.out.println("Enter another number");
+           //System.out.println(arrayOfNumbers[i]);
+       }
+       double sum=0;
+       for(int i=0;i<n;i++)
+       {
+           int oneValue=arrayOfNumbers[i];
+           sum=oneValue+sum;
+           System.out.println("sum "+sum);
+       }
+       double average=sum/n;
+       System.out.println("average is "+average);
+       System.out.println("after creation of array");
+       //double average=findAverage(n)
+       }
+       catch(NegativeNumberException e)
+       {
+           System.out.println("caught NNE");
+           System.out.println(e.getBadNumber());
+       }
+       System.out.println("made it to end after try catch");
+   }
+}
