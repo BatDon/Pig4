@@ -1,0 +1,95 @@
+package javaapplication15;
+import java.util.Random;
+import java.util.ArrayList;
+import java.util.Scanner;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+/**
+ *
+ * @author usuario
+ */
+public class DiverScore 
+{
+    public static ArrayList<Integer> randomScore(ArrayList<Integer> scores)
+    {
+        Random randomGenerator = new Random(); 
+        int r;
+        for(int i=0;i<7;i++)
+        {
+            r= randomGenerator.nextInt(10)+1;
+            System.out.println(r);
+            scores.add(r);
+        }
+        return scores;
+    }
+    public static int findMax(ArrayList<Integer>scores)
+    {
+        int max=0;
+        for(Integer j:scores)
+            if(j>max)
+                max=j;
+        int indexMax=scores.lastIndexOf(max);
+        return indexMax;
+    }
+    public static int findMin(ArrayList<Integer>scores)
+    {
+        int min=10;
+        for(Integer j:scores)
+            if(j<min)
+                min=j;
+        int indexMin=scores.lastIndexOf(min);
+        return indexMin;
+    }
+    public static ArrayList<Integer> remove(ArrayList<Integer>scores,Object maxNumber,Object minNumber)
+    {
+        System.out.println("in remove Judges");
+        scores.remove(maxNumber);
+        System.out.println("in between max and min");
+        scores.remove(minNumber);
+        return scores;
+    }
+    public static int sumScore(ArrayList<Integer> scores)
+    {
+        int sum=0;
+        for(int i:scores)
+            sum+=i;
+        return sum;
+    }
+    public static double diversScore(int sumOfJudges,double difficulty)
+    {
+        System.out.println("in diversScore");
+        double scoreTotal=sumOfJudges*difficulty;
+        return scoreTotal;
+    }
+    public static void main(String[] args)
+    {
+        ArrayList<Integer>scores=new ArrayList<Integer>(7);
+        ArrayList<Integer> scoreArray=randomScore(scores);
+        int maxIndex=findMax(scores);
+        int maxNumber=scores.get(maxIndex);
+        System.out.println("max= "+maxIndex);
+        int minIndex=findMin(scores);
+        int minNumber=scores.get(minIndex);
+        System.out.println("min= "+minIndex);
+        ArrayList<Integer>fiveJudges=remove(scores,maxNumber,minNumber);
+        System.out.println("before for");
+        for(int i:fiveJudges)
+            System.out.println(i);
+        int sumOfJudges=sumScore(scores);
+        Scanner keyboard=new Scanner(System.in);
+        /*System.out.println("Input the level of difficulty in between 1.2 and "
+                    +"3.8 ");
+        double difficulty=keyboard.nextDouble();*/
+        double difficulty=3.1;
+        double finalScore=diversScore(sumOfJudges,difficulty);
+        System.out.println("The finals diver's score is "+finalScore);
+        
+        
+        
+        
+    }
+}
