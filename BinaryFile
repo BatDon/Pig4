@@ -1,0 +1,26 @@
+
+package javaapplication13;
+
+import java.util.Scanner;
+
+/**
+ *
+ * @author usuario
+ */
+public class BinaryFile 
+{
+      public static void main(String[] args)
+    {
+        Scanner keyboard=new Scanner(System.in);
+        //keyboard.useLocale(Locale.US);
+        System.out.println("Input a list of double numbers seperated "+
+                "by a space input no when you are done ");
+        System.out.println("after keyboard");
+        Double userDouble;
+        String stringvar;
+        Boolean value=true;
+        Integer number;
+        userDouble=keyboard.nextDouble();
+        System.out.println("User "+userDouble);
+    }
+}
