@@ -1,0 +1,167 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package secondPack;
+
+/**
+ *
+ * @author usuario
+ */
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import javax.swing.JMenu;
+import javax.swing.JMenuItem;
+import javax.swing.JMenuBar;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JTextArea;
+import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.Graphics;
+import javax.swing.JComponent;
+import java.awt.Component;
+import java.awt.Container;
+
+public class ChooseFont extends JFrame implements ActionListener
+{
+    public static final int WIDTH=400;
+    public static final int HEIGHT=300;
+    public static final int NUMBER_OF_CHARACTERS=30;
+    private JPanel menuPanel;
+    private JPanel textPanel;
+    private JTextArea frase;
+    private String fontName;
+    private Font font;
+    private String originalString;
+    private String changedString;
+    private JComponent fontContainer;
+    private int fontSize;
+    private int fontType;
+    
+    
+    public static void main(String[] args)
+    {
+        ChooseFont chooseFont=new ChooseFont();
+        chooseFont.setVisible(true);
+    }
+    
+    public ChooseFont()
+    {
+        super("Change your text");
+        setSize(WIDTH,HEIGHT);
+        setLayout(new GridLayout(2,1));
+        
+        JPanel menuPanel=new JPanel();
+        menuPanel.setLayout(new FlowLayout());
+        menuPanel.setBackground(Color.BLUE);
+        
+        JMenu fontOptions= new JMenu("Choose a font style");
+        JMenuItem monospaced=new JMenuItem("Monospaced");
+        monospaced.addActionListener(this);
+        fontOptions.add(monospaced);
+        JMenuItem sanSerif=new JMenuItem("SanSerif");
+        sanSerif.addActionListener(this);
+        fontOptions.add(sanSerif);
+        JMenuItem serif=new JMenuItem("Serif");
+        serif.addActionListener(this);
+        fontOptions.add(serif);
+        
+        JMenu fontSize=new JMenu("Choose a font size");
+        JMenuItem font12=new JMenuItem("12");
+        font12.addActionListener(this);
+        fontSize.add(font12);
+        
+        JMenuItem font14=new JMenuItem("14");
+        font14.addActionListener(this);
+        fontSize.add(font14);
+        JMenuItem font32=new JMenuItem("32");
+        font32.addActionListener(this);
+        fontSize.add(font32);
+        
+        JMenu fontType=new JMenu("Choose bold or italic");
+        JMenuItem bold=new JMenuItem("bold");
+        bold.addActionListener(this);
+        fontType.add(bold);
+        JMenuItem italic=new JMenuItem("italic");
+        italic.addActionListener(this);
+        fontType.add(italic);
+        
+        JButton changeText=new JButton("Change Text");
+        changeText.addActionListener(this);
+        menuPanel.add(changeText);
+        
+        JMenuBar menuBar=new JMenuBar();
+        JMenuBar menuBar2=new JMenuBar();
+        JMenuBar menuBar3=new JMenuBar();
+        menuBar.add(fontOptions);
+        menuBar2.add(fontSize);
+        menuBar3.add(fontType);
+        
+        menuPanel.add(menuBar);
+        menuPanel.add(menuBar2);
+        menuPanel.add(menuBar3);
+        
+        /*setJMenuBar(menuBar);
+        setJMenuBar(menuBar2);
+        setJMenuBar(menuBar3);*/
+        add(menuPanel);
+        
+        
+        JPanel frasePanel=new JPanel();
+        frasePanel.setLayout(new BorderLayout());
+        frasePanel.setBackground(Color.GREEN);
+        
+        frase=new JTextArea();
+        frasePanel.add(frase,BorderLayout.SOUTH);
+        
+        add(frasePanel);
+    }    
+    public void actionPerformed(ActionEvent e)
+    {
+        String buttonString = e.getActionCommand( );
+        if (buttonString.equals("Monospaced"))
+            fontName="Monospaced";
+        else if (buttonString.equals("SanSerif"))
+            fontName="SanSerif";
+        else if (buttonString.equals("Serif"))
+            fontName="Serif";
+        else if (buttonString.equals("12"))
+            fontSize=12;
+        else if (buttonString.equals("14"))
+            fontSize=14;
+        else if (buttonString.equals("32"))
+            fontSize=32;
+        else if (buttonString.equals("bold"))
+            fontType=Font.BOLD;
+        else if (buttonString.equals("italic"))
+            fontType=Font.ITALIC;
+        else if (buttonString.equals("Change Text"))
+        {
+            font=(new Font(fontName,fontType,fontSize));
+            //this gets orinal typed in string
+            originalString=frase.getText();
+            //(frase.getText()).setFont(font);
+            frase.setFont(font);
+            //originalString.setFont(font);
+            //fontContainer.setFont(font);
+            //fontContainer.setText(originalString);
+            //changeFont(fontContainer,font);
+            //frase.setFont(font);
+            //repaint();
+        }    
+            //private Font fontObject=
+ //new Font("SansSerif", Font.PLAIN, POINT_SIZE); 
+        else
+            System.out.println("Unexpected error.");
+    }
+    
+  
+
+    
+}
